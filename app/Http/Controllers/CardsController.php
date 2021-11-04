@@ -42,6 +42,15 @@ class CardsController extends Controller
         return response()->json($card, 200);
     }
 
+    public function like($card_id) {
+        $card = Card::find($card_id);
+
+        $card->card_likes = $card['card_likes'] + 1;
+        $card->save();
+
+        return response('Succesfull card liked.', 200);
+    }
+
     public function delete($card_id) {
 
         $card = Card::find($card_id);
